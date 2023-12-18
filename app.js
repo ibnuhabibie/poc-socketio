@@ -19,14 +19,14 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
-
-  setInterval(() => {
-    io.emit('message', {
-      date: new Date(),
-      id: (Math.random() + 1).toString(36).substring(7),
-    });
-  }, 10000);
 });
+
+setInterval(() => {
+  io.send({
+    date: new Date(),
+    id: (Math.random() + 1).toString(36).substring(7),
+  });
+}, 10000);
 
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
