@@ -26,7 +26,7 @@ setInterval(() => {
     date: new Date(),
     id: (Math.random() + 1).toString(36).substring(7),
   });
-}, 10000);
+}, 5000);
 
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
