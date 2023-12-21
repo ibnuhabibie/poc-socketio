@@ -12,9 +12,10 @@ Audio.prototype.play = (function (play) {
 })(Audio.prototype.play);
 
 const socket = io(`http://${window.location.host}:3030`);
+// const socket = io(`http://localhost:3030`);
 
 socket.on('message', async (msg) => {
-  let notif = document.getElementById('audio');
+  let notif = document.getElementById(msg.sound_id);
   notif.play();
   // let permission = await Notification.requestPermission();
   // if (permission == 'granted') {
@@ -25,7 +26,7 @@ socket.on('message', async (msg) => {
 
   let li = document.createElement('li');
   let id = document.createElement('span');
-  id.innerText = msg.id;
+  id.innerText = `${msg.id} - ${msg.sound_id}`;
 
   let date = document.createElement('span');
   date.innerText = msg.date;

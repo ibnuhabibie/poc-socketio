@@ -25,6 +25,7 @@ setInterval(() => {
   io.send({
     date: new Date(),
     id: (Math.random() + 1).toString(36).substring(7),
+    sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
   });
 }, 5000);
 
