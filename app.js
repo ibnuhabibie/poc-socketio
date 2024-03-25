@@ -33,30 +33,25 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
-
-  // socket.on('join', ({ username }) => {
-  //   console.log(`${username} has joined.`);
-  // });
-
-  setInterval(() => {
-    io.sockets.emit('message:frontoffice', {
-      date: new Date(),
-      id:
-        'frontoffice ' +
-        (Math.random() + 1).toString(36).substring(7),
-      sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
-    });
-
-    io.sockets.emit('message:poc', {
-      date: new Date(),
-      id: 'poc ' + (Math.random() + 1).toString(36).substring(7),
-      sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
-    });
-
-    io.sockets.emit('message:nurse', {
-      date: new Date(),
-      id: 'nurse ' + (Math.random() + 1).toString(36).substring(7),
-      sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
-    });
-  }, 5000);
 });
+
+setInterval(() => {
+  io.sockets.emit('message:frontoffice', {
+    date: new Date(),
+    id:
+      'frontoffice ' + (Math.random() + 1).toString(36).substring(7),
+    sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
+  });
+
+  io.sockets.emit('message:poc', {
+    date: new Date(),
+    id: 'poc ' + (Math.random() + 1).toString(36).substring(7),
+    sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
+  });
+
+  io.sockets.emit('message:nurse', {
+    date: new Date(),
+    id: 'nurse ' + (Math.random() + 1).toString(36).substring(7),
+    sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
+  });
+}, 5000);
