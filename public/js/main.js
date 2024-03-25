@@ -11,8 +11,8 @@ Audio.prototype.play = (function (play) {
   };
 })(Audio.prototype.play);
 
-const socket = io(`http://${window.location.host}:3030`);
-// const socket = io(`http://localhost:3030`);
+// const socket = io(`http://${window.location.host}:3030`);
+const socket = io(`http://localhost:3030`);
 
 socket.on('message', async (msg) => {
   let notif = document.getElementById(msg.sound_id);

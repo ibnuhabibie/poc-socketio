@@ -4,7 +4,6 @@ const { Server } = require('socket.io');
 require('dotenv').config();
 
 const app = express();
-app.use(express.static('public'));
 
 const { PORT, SOCKET_PORT } = process.env;
 
@@ -28,10 +27,6 @@ setInterval(() => {
     sound_id: `sound${Math.floor(Math.random() * 5) + 1}`,
   });
 }, 5000);
-
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'index.html'));
-});
 
 app.listen(PORT, () => {
   console.log(
