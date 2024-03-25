@@ -63,7 +63,7 @@ btnClear.addEventListener('click', function () {
 
 btnLogin.addEventListener('click', function () {
   if (!username.value) return;
-  localStorage.setItem('username', username);
+  localStorage.setItem('username', username.value);
 
-  connectWs(username);
+  connectWs(username.value);
 });
