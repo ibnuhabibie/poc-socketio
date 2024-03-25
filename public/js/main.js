@@ -11,18 +11,14 @@ Audio.prototype.play = (function (play) {
   };
 })(Audio.prototype.play);
 
-const socket = io(`https://poc-server-socketio.on-dev.info`, {socket:true});
-//const socket = io(`http://localhost:3030`);
+// const socket = io(`https://poc-server-socketio.on-dev.info`, {
+//   socket: true,
+// });
+const socket = io(`http://localhost:3000`);
 
-socket.on('message', async (msg) => {
+function showSocketData(msg) {
   let notif = document.getElementById(msg.sound_id);
   notif.play();
-  // let permission = await Notification.requestPermission();
-  // if (permission == 'granted') {
-  // const greeting = new Notification('Hi, How are you?');
-  // greeting.onclick = () => window.open('http://localhost:3000/');
-  // }
-  // console.log(permission);
 
   let li = document.createElement('li');
   let id = document.createElement('span');
@@ -35,10 +31,39 @@ socket.on('message', async (msg) => {
   li.appendChild(date);
 
   document.getElementById('content').appendChild(li);
-});
+}
 
-let btnClear = document.querySelector('button');
+// elements
+let btnClear = document.getElementById('clear');
+let btnLogin = document.getElementById('login');
+let username = document.querySelector('input[name="username"]');
+let inputwrapper = document.querySelector('.input-wrapper');
+let app = document.getElementById('app');
+
+let usernameLs = localStorage.getItem('username');
+
+function connectWs(username) {
+  inputwrapper?.classList.add('hidden');
+
+  app?.classList.remove('hidden');
+
+  socket.on(`message:${username}`, async (msg) =>
+    showSocketData(msg)
+  );
+}
+
+if (usernameLs) {
+  connectWs(usernameLs);
+}
+
 btnClear.addEventListener('click', function () {
   let content = document.getElementById('content');
   content.innerHTML = '';
+});
+
+btnLogin.addEventListener('click', function () {
+  if (!username.value) return;
+  localStorage.setItem('username', username);
+
+  connectWs(username);
 });

@@ -3,6 +3,26 @@
   margin: 0;
 }
 
+.hidden {
+  display: none !important;
+}
+
+/* input wrapper */
+.input-wrapper {
+  display: flex;
+  width: 90%;
+  left: 5%;
+  justify-content: center;
+  position: fixed;
+  bottom: 70px;
+  justify-content: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 20px;
+}
+
 #app h1 {
   text-align: center;
   padding: 30px 0;
